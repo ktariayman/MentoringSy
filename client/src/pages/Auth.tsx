@@ -12,7 +12,10 @@ import RegisterForm from '@/forms/RegisterForm';
 
 export default function Auth() {
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
+    <div
+      style={{ background: 'hsl(var(--background-light))' }}
+      className='w-100 flex items-center justify-center min-h-screen bg-gray-100'
+    >
       <Card className='w-[350px]'>
         <CardHeader>
           <CardTitle>Welcome</CardTitle>

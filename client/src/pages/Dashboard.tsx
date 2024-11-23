@@ -378,7 +378,7 @@ type ModalProps = {
 
 export const Modal = ({ children, onClose }: ModalProps) => (
   <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-    <div className='bg-white p-6 rounded shadow-lg w-1/3'>
+    <div className='p-6 rounded shadow-lg w-1/3 bg-muted'>
       {children}
       <button
         className='absolute top-2 right-2 text-gray-500'
@@ -391,6 +391,7 @@ export const Modal = ({ children, onClose }: ModalProps) => (
 );
 
 type Tab = 'overview' | 'sessions' | 'resources' | 'messages';
+
 export default function MentorshipDashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [sidebarWidth, setSidebarWidth] = useState(256);
@@ -400,12 +401,12 @@ export default function MentorshipDashboard() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setIsSidebarCollapsed(true); // Collapse sidebar on mobile screens
+        setIsSidebarCollapsed(true);
       } else {
-        setIsSidebarCollapsed(false); // Expand sidebar on larger screens
+        setIsSidebarCollapsed(false);
       }
     };
-    handleResize(); // Initialize on mount
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -456,20 +457,24 @@ export default function MentorshipDashboard() {
   return (
     <div className='flex h-screen bg-background text-foreground'>
       <aside
-        style={{ width: isSidebarCollapsed ? '64px' : `${sidebarWidth}px` }}
-        className={`transition-all duration-300 bg-white shadow-lg flex flex-col`}
+        style={{
+          background: 'var(--background)',
+          width: isSidebarCollapsed ? '64px' : `${sidebarWidth}px`
+        }}
+        className={` transition-all duration-300 bg-white shadow-lg flex flex-col  border-r border-r-grey-500`}
       >
         <div className='flex items-center justify-between px-4 py-3 border-b'>
           <Button
             variant='ghost'
             size='icon'
             className='block'
+            style={{ display: 'flex' }}
             onClick={() => setIsSidebarCollapsed((prev) => !prev)}
           >
             <Menu className='h-5 w-5' />
           </Button>
         </div>
-        <nav className='mt-4 flex-grow space-y-2'>
+        <nav className='mt-4 flex-grow space-y-2 pr-2'>
           {[
             { tab: 'overview', label: 'Overview', icon: Users },
             { tab: 'sessions', label: 'Sessions', icon: Calendar },
