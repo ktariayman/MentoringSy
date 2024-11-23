@@ -4,9 +4,9 @@ import { Label } from '@/components/ui/label';
 import { useAuthHandler } from '@/hooks/useAuth';
 
 export const LoginForm = () => {
-  const { isLoading, login } = useAuthHandler();
+  const { isLoading, onLogin } = useAuthHandler();
   return (
-    <form onSubmit={login}>
+    <form onSubmit={onLogin}>
       <div className='grid w-full items-center gap-4'>
         <div className='flex flex-col space-y-1.5'>
           <Label htmlFor='login-email'>Email</Label>

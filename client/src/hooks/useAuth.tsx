@@ -1,30 +1,21 @@
-import { useState } from 'react';
+import { useAuthStore } from '@/store/auth.store';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuthHandler = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isLoading, register, login } = useAuthStore();
   const navigate = useNavigate();
-  const login = async (event: React.FormEvent<HTMLFormElement>) => {
+
+  const onLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true);
-    await new Promise(() =>
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 2000)
-    );
-    setIsLoading(false);
+    // 🔴 todo : navigate to will be changed based on the user role.
+    await login(() => navigate('/dashboard'));
   };
 
-  const register = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true);
-    await new Promise(() =>
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 2000)
-    );
-    setIsLoading(false);
+    // 🔴 todo : navigate to will be changed based on the user role.
+    await register(() => navigate('/dashboard'));
   };
 
-  return { login, register, isLoading };
+  return { onLogin, onRegister, isLoading };
 };

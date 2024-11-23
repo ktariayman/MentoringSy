@@ -4,9 +4,9 @@ import { Label } from '@/components/ui/label';
 import { useAuthHandler } from '@/hooks/useAuth';
 
 const RegisterForm = () => {
-  const { isLoading, register } = useAuthHandler();
+  const { isLoading, onRegister } = useAuthHandler();
   return (
-    <form onSubmit={register}>
+    <form onSubmit={onRegister}>
       <div className='grid w-full items-center gap-4'>
         <div className='flex flex-col space-y-1.5'>
           <Label htmlFor='register-name'>Name</Label>
