@@ -1,4 +1,6 @@
+import { SECOND } from '@/constants/index.constants';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 type AuthState = {
   isAuthenticated: boolean;
@@ -8,26 +10,33 @@ type AuthState = {
   logout: (callback?: () => void) => void;
 };
 
-export const useAuthStore = create<AuthState>((set) => ({
-  isAuthenticated: false,
-  isLoading: false,
+export const useAuthStore = create(
+  persist<AuthState>(
+    (set) => ({
+      isAuthenticated: false,
+      isLoading: false,
 
-  login: async (callback?: () => void) => {
-    set({ isLoading: true });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    set({ isAuthenticated: true, isLoading: false });
-    if (callback) callback();
-  },
+      login: async (callback?: () => void) => {
+        set({ isLoading: true });
+        await new Promise((resolve) => setTimeout(resolve, SECOND));
+        set({ isAuthenticated: true, isLoading: false });
+        if (callback) callback();
+      },
 
-  register: async (callback?: () => void) => {
-    set({ isLoading: true });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    set({ isAuthenticated: true, isLoading: false });
-    if (callback) callback();
-  },
+      register: async (callback?: () => void) => {
+        set({ isLoading: true });
+        await new Promise((resolve) => setTimeout(resolve, SECOND));
+        set({ isAuthenticated: true, isLoading: false });
+        if (callback) callback();
+      },
 
-  logout: (callback?: () => void) => {
-    set({ isAuthenticated: false });
-    if (callback) callback(); // Navigate to the login page
-  }
-}));
+      logout: (callback?: () => void) => {
+        set({ isAuthenticated: false });
+        if (callback) callback();
+      }
+    }),
+    {
+      name: 'auth-store'
+    }
+  )
+);
