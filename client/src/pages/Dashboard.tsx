@@ -1,25 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  Calendar,
-  MessageSquare,
-  Users,
-  BookOpen,
-  LogOut,
-  Settings,
-  User,
-  Menu
-} from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Calendar, MessageSquare, Users, BookOpen, LogOut, Menu } from 'lucide-react';
+
 import {
   Table as ShadTable,
   TableBody,
@@ -30,10 +13,8 @@ import {
 } from '@/components/ui/table';
 import { Edit, Trash, ChevronUp, ChevronDown } from 'lucide-react';
 
-import { ModeToggle } from '@/components/mode-toggle';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
 import { useNavigate } from 'react-router-dom';
+import { Header } from '@/components/Header';
 
 type OverviewCardProps = {
   title: string;
@@ -51,62 +32,6 @@ const OverviewCard = ({ title, icon: Icon, value, description }: OverviewCardPro
     <CardContent>
       <div className='text-2xl font-bold'>{value}</div>
       <p className='text-xs text-muted-foreground'>{description}</p>
-    </CardContent>
-  </Card>
-);
-
-type ProfileCardProps = {
-  type: 'Mentor' | 'Mentee';
-  name: string;
-  role: string;
-  badges: string[];
-  progress?: { title: string; value: number }[];
-};
-
-const ProfileCard = ({ type, name, role, badges, progress = [] }: ProfileCardProps) => (
-  <Card className='min-w-0'>
-    <CardHeader>
-      <CardTitle>{type} Profile</CardTitle>
-      <CardDescription>
-        {type === 'Mentor' ? 'Your mentorship information' : 'Your learning progress'}
-      </CardDescription>
-    </CardHeader>
-    <CardContent>
-      <div className='flex flex-col sm:flex-row items-center sm:space-x-4'>
-        <Avatar className='h-20 w-20 mb-4 sm:mb-0'>
-          <AvatarImage
-            src='/placeholder.jpg'
-            alt={`${type}`}
-          />
-          <AvatarFallback>{name.slice(0, 2)}</AvatarFallback>
-        </Avatar>
-        <div className='text-center sm:text-left'>
-          <h3 className='text-lg font-semibold'>{name}</h3>
-          <p className='text-sm text-muted-foreground'>{role}</p>
-          <div className='flex flex-wrap justify-center sm:justify-start space-x-2 mt-2 gap-1'>
-            {badges.map((badge: string, index: number) => (
-              <Badge key={index}>{badge}</Badge>
-            ))}
-          </div>
-        </div>
-      </div>
-      {progress.length > 0 && (
-        <div className='mt-4'>
-          <h4 className='font-semibold mb-2'>Learning Progress</h4>
-          {progress.map((item, index) => (
-            <div key={index}>
-              <div className='flex justify-between mb-1'>
-                <span className='text-sm font-medium'>{item.title}</span>
-                <span className='text-sm font-medium'>{item.value}%</span>
-              </div>
-              <Progress
-                value={item.value}
-                className='w-full'
-              />
-            </div>
-          ))}
-        </div>
-      )}
     </CardContent>
   </Card>
 );
@@ -130,7 +55,6 @@ type DashboardTableProps<T> = {
 const DashboardTable = <T extends Record<string, any>>({
   columns,
   data,
-  onEdit,
   onDelete,
   className,
   rowsPerPage = 5
@@ -267,7 +191,7 @@ const DashboardTable = <T extends Record<string, any>>({
         </Modal>
       )}
 
-      <div className={`overflow-x-auto ${className}`}>
+      <div className={`overflow-x-auto p-6 ${className}`}>
         <ShadTable>
           <TableHeader>
             <TableHead>
@@ -377,8 +301,8 @@ type ModalProps = {
 };
 
 export const Modal = ({ children, onClose }: ModalProps) => (
-  <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'>
-    <div className='p-6 rounded shadow-lg w-1/3 bg-muted'>
+  <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80'>
+    <div className='p-6 rounded shadow-lg w-1/3 bg-background-light'>
       {children}
       <button
         className='absolute top-2 right-2 text-gray-500'
@@ -479,7 +403,8 @@ export default function MentorshipDashboard() {
             { tab: 'overview', label: 'Overview', icon: Users },
             { tab: 'sessions', label: 'Sessions', icon: Calendar },
             { tab: 'resources', label: 'Resources', icon: BookOpen },
-            { tab: 'messages', label: 'Messages', icon: MessageSquare }
+            { tab: 'messages', label: 'Messages', icon: MessageSquare },
+            { tab: 'mentors', label: 'Mentors', icon: MessageSquare }
           ].map(({ tab, label, icon: Icon }) => (
             <Button
               key={tab}
@@ -514,7 +439,7 @@ export default function MentorshipDashboard() {
       </aside>
 
       <main className='flex-1 overflow-y-auto'>
-        <header className='flex justify-end border-b'>
+        {/* <header className='flex justify-end border-b'>
           <div className='flex items-center justify-between px-4 py-3'>
             <div className='flex items-center space-x-4'>
               <Button
@@ -571,28 +496,14 @@ export default function MentorshipDashboard() {
               </DropdownMenu>
             </div>
           </div>
-        </header>
+        </header> */}
 
+        <Header
+          isLoggedIn
+          onLogout={() => navigate('/')}
+          title='Dashboard'
+        />
         <div className='p-6'>
-          <div className='grid gap-6 md:grid-cols-2'>
-            <ProfileCard
-              type='Mentor'
-              name='Dr. Jane Doe'
-              role='Senior Data Scientist'
-              badges={['Machine Learning', 'Python', 'Data Analysis']}
-            />
-            <ProfileCard
-              type='Mentee'
-              name='Alex Smith'
-              role='Aspiring Data Scientist'
-              badges={['Python', 'Statistics']}
-              progress={[
-                { title: 'Machine Learning Basics', value: 60 },
-                { title: 'Data Visualization', value: 75 }
-              ]}
-            />
-          </div>
-
           {activeTab === 'overview' && (
             <div className='mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
               <OverviewCard
