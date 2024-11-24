@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
+import { mentors } from '@/constants/index.constants';
 
 export default function MentorBrowse() {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -53,35 +54,35 @@ export default function MentorBrowse() {
     { name: 'Data Engineering', count: 361 }
   ];
 
-  const mentors = [
-    {
-      id: 1,
-      name: 'Dan Carino',
-      title: 'Senior Product Designer @ Klarna',
-      location: 'Sweden',
-      rating: 5.0,
-      reviews: 3,
-      image: '/placeholder.svg',
-      skills: ['Swedish', 'E-commerce', 'Design Strategy', 'UX/UI Design'],
-      price: 200,
-      isQuickResponder: true,
-      about: 'Senior Product Designer with expertise in E-commerce and UX/UI Design'
-    },
-    {
-      id: 2,
-      name: 'Pedro Proenca',
-      title: 'Engineering Manager at Meta',
-      location: 'Portugal',
-      rating: 5.0,
-      reviews: 12,
-      image: '/placeholder.svg',
-      skills: ['Engineering Management', 'Team Leadership', 'Product Strategy'],
-      price: 200,
-      isQuickResponder: true,
-      about:
-        '12 years of experiences in building high-performing teams and products from the ground up'
-    }
-  ];
+  // const mentors = [
+  //   {
+  //     id: 1,
+  //     name: 'Dan Carino',
+  //     title: 'Senior Product Designer @ Klarna',
+  //     location: 'Sweden',
+  //     rating: 5.0,
+  //     reviews: 3,
+  //     image: '/placeholder.svg',
+  //     skills: ['Swedish', 'E-commerce', 'Design Strategy', 'UX/UI Design'],
+  //     price: 200,
+  //     isQuickResponder: true,
+  //     about: 'Senior Product Designer with expertise in E-commerce and UX/UI Design'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Pedro Proenca',
+  //     title: 'Engineering Manager at Meta',
+  //     location: 'Portugal',
+  //     rating: 5.0,
+  //     reviews: 12,
+  //     image: '/placeholder.svg',
+  //     skills: ['Engineering Management', 'Team Leadership', 'Product Strategy'],
+  //     price: 200,
+  //     isQuickResponder: true,
+  //     about:
+  //       '12 years of experiences in building high-performing teams and products from the ground up'
+  //   }
+  // ];
 
   const mentorCategories = [
     'Engineering Mentors',
