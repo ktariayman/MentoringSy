@@ -6,7 +6,8 @@ import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
 import MenteeDashboard from './pages/Mentee';
 import MentorProfile from './pages/MentorProfile';
-import MentorBrowse from './pages/BrowseMentor';
+import BrowseMentor from './pages/BrowseMentor';
+import BrowseMentee from './pages/BrowseMentee';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,15 +34,23 @@ function App() {
           element: <Dashboard />
         },
         {
-          path: '/mentee',
+          path: '/mentees',
           element: <MenteeDashboard />
         },
         {
           path: '/mentors',
-          element: <MentorBrowse />
+          element: <BrowseMentor />
+        },
+        {
+          path: '/mentees',
+          element: <BrowseMentee />
         },
         {
           path: '/mentors/:id',
+          element: <MentorProfile />
+        },
+        {
+          path: '/mentees/:id',
           element: <MentorProfile />
         }
       ]

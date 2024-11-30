@@ -2,7 +2,7 @@ import { useAuthStore } from '@/store/auth.store';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuthHandler = () => {
-  const { isLoading, register, login } = useAuthStore();
+  const { isLoading, register, login, logout } = useAuthStore();
   const navigate = useNavigate();
 
   const onLogin = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -17,5 +17,9 @@ export const useAuthHandler = () => {
     await register(() => navigate('/dashboard'));
   };
 
-  return { onLogin, onRegister, isLoading };
+  const onLogout = async () => {
+    await logout(() => navigate('/'));
+  };
+
+  return { onLogin, onLogout, onRegister, isLoading };
 };

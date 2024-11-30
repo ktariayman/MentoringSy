@@ -157,7 +157,7 @@ export default function MenteeDashboard() {
       {/* Sidebar */}
       <aside className='w-64 border-r'>
         <div className='p-4'>
-          <h1 className='text-2xl font-bold'>MentorMatch</h1>
+          <h1 className='text-2xl font-bold'>MentoringSy</h1>
         </div>
         <nav className='mt-6'>
           <Button

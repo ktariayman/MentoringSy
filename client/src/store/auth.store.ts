@@ -30,7 +30,8 @@ export const useAuthStore = create(
         if (callback) callback();
       },
 
-      logout: (callback?: () => void) => {
+      logout: async (callback?: () => void) => {
+        await new Promise((resolve) => setTimeout(resolve, SECOND));
         set({ isAuthenticated: false });
         if (callback) callback();
       }
