@@ -2,12 +2,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@/components/theme-provider';
 import LoggedInRoutes from './routes/LoggedInRoutes';
 import NotLoggedInRoutes from './routes/NotLoggedInRoutes';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './features/Dashboard';
 import Auth from './features/Auth';
 import BrowseMentor from './features/Mentors/BrowseMentor';
 import MenteeDashboard from './pages/Mentee';
 import MentorProfile from './pages/MentorProfile';
-import BrowseMentee from './pages/BrowseMentee';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,10 +40,6 @@ function App() {
           path: '/browse/mentors',
           element: <BrowseMentor />
         },
-        // {
-        //   path: '/browse/mentees',
-        //   element: <BrowseMentee />
-        // },
         {
           path: '/mentors/:id',
           element: <MentorProfile />
