@@ -41,10 +41,10 @@ function App() {
           path: '/browse/mentors',
           element: <BrowseMentor />
         },
-        {
-          path: '/browse/mentees',
-          element: <BrowseMentee />
-        },
+        // {
+        //   path: '/browse/mentees',
+        //   element: <BrowseMentee />
+        // },
         {
           path: '/mentors/:id',
           element: <MentorProfile />
