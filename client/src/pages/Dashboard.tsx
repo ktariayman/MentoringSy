@@ -391,8 +391,8 @@ export default function MentorshipDashboard() {
     { tab: 'overview', label: 'Overview', icon: Users },
     { tab: 'sessions', label: 'Sessions', icon: Calendar },
     { tab: 'resources', label: 'Resources', icon: BookOpen },
-    { tab: 'mentors', label: 'Mentors', icon: Users, onClick: () => navigate('/mentors') },
-    { tab: 'mentees', label: 'Mentees', icon: Users, onClick: () => navigate('/mentees') }
+    { tab: 'mentors', label: 'Mentors', icon: Users, onClick: () => navigate('/browse/mentors') },
+    { tab: 'mentees', label: 'Mentees', icon: Users, onClick: () => navigate('/browse/mentees') }
   ];
 
   return (

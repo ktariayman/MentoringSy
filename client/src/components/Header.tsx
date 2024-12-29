@@ -29,7 +29,7 @@ export const Header = ({ isLoggedIn, onLogout, children }: HeaderProps) => {
         <div className='flex items-center space-x-4'>
           <Button
             variant='ghost'
-            onClick={() => navigate('/mentors')}
+            onClick={() => navigate('/browse/mentors')}
           >
             Browse Mentors
           </Button>
