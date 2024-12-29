@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useAuthHandler } from '@/hooks/useAuth';
+import { useAuthHandler } from '@/features/Auth/hooks/useAuth';
 
 const RegisterForm = () => {
   const { isLoading, onRegister } = useAuthHandler();

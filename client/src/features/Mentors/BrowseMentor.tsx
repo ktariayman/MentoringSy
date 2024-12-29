@@ -2,28 +2,10 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Star,
-  Zap,
-  Clock,
-  MessageSquare,
-  Calendar,
-  LinkedinIcon,
-  Search,
-  ChevronDown,
-  Ship
-} from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog';
+import { Star, Zap, Search, ChevronDown, Ship } from 'lucide-react';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,7 +13,8 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
-import { mentors } from '@/constants/index.constants';
+import { mentors } from '@/constants';
+import MentorCard from './components/MentorCard';
 
 export default function MentorBrowse() {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -93,182 +76,6 @@ export default function MentorBrowse() {
     'Career Coaches',
     'Top Mentors'
   ];
-
-  const MentorCard = ({ mentor }: any) => (
-    <Card className='w-full hover:shadow-md transition-shadow'>
-      <CardContent className='flex gap-4 p-4'>
-        <img
-          src={mentor.image}
-          alt={mentor.name}
-          className='w-24 h-24 rounded-full object-cover'
-        />
-        <div className='flex-1'>
-          <div className='flex items-center gap-2'>
-            <h3 className='text-lg font-semibold'>{mentor.name}</h3>
-            {mentor.isQuickResponder && (
-              <Badge
-                variant='secondary'
-                className='gap-1'
-              >
-                <Zap className='w-3 h-3' /> Quick Responder
-              </Badge>
-            )}
-          </div>
-          <p className='text-sm text-muted-foreground'>{mentor.title}</p>
-          <div className='flex items-center gap-1 mt-1'>
-            <Star className='w-4 h-4 fill-primary text-primary' />
-            <span className='text-sm font-medium'>{mentor.rating}</span>
-            <span className='text-sm text-muted-foreground'>({mentor.reviews} reviews)</span>
-          </div>
-          <div className='flex flex-wrap gap-1 mt-2'>
-            {mentor.skills.map((skill: any) => (
-              <Badge
-                variant='outline'
-                key={skill}
-              >
-                {skill}
-              </Badge>
-            ))}
-          </div>
-          <div className='mt-4 flex items-center justify-between'>
-            <div>
-              <p className='text-sm text-muted-foreground'>Starting from</p>
-              <p className='text-lg font-bold'>${mentor.price} / month</p>
-            </div>
-            <Button onClick={() => navigate(`/mentors/${mentor.id}`)}>View Profile</Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-
-  const MentorProfile = ({ mentor }: any) => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          variant='ghost'
-          className='w-full p-0 h-auto hover:bg-transparent'
-        >
-          <Card className='w-full hover:shadow-md transition-shadow'>
-            <CardContent className='flex gap-4 p-4'>
-              <img
-                src={mentor.image}
-                alt={mentor.name}
-                className='w-24 h-24 rounded-full object-cover'
-              />
-              <div className='flex-1'>
-                <div className='flex items-center gap-2'>
-                  <h3 className='text-lg font-semibold'>{mentor.name}</h3>
-                  {mentor.isQuickResponder && (
-                    <Badge
-                      variant='secondary'
-                      className='gap-1'
-                    >
-                      <Zap className='w-3 h-3' /> Quick Responder
-                    </Badge>
-                  )}
-                </div>
-                <p className='text-sm text-muted-foreground'>{mentor.title}</p>
-                <div className='flex items-center gap-1 mt-1'>
-                  <Star className='w-4 h-4 fill-primary text-primary' />
-                  <span className='text-sm font-medium'>{mentor.rating}</span>
-                  <span className='text-sm text-muted-foreground'>({mentor.reviews} reviews)</span>
-                </div>
-                <div className='flex flex-wrap gap-1 mt-2'>
-                  {mentor.skills.map((skill: any) => (
-                    <Badge
-                      variant='outline'
-                      key={skill}
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-                <div className='mt-4 flex items-center justify-between'>
-                  <div>
-                    <p className='text-sm text-muted-foreground'>Starting from</p>
-                    <p className='text-lg font-bold'>${mentor.price} / month</p>
-                  </div>
-                  <Button>View Profile</Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </Button>
-      </DialogTrigger>
-      <DialogContent className='max-w-2xl'>
-        <DialogHeader>
-          <DialogTitle>Mentor Profile</DialogTitle>
-          <DialogDescription>Connect with {mentor.name}</DialogDescription>
-        </DialogHeader>
-        <div className='grid gap-4'>
-          <div className='flex items-start gap-4'>
-            <img
-              src={mentor.image}
-              alt={mentor.name}
-              className='w-32 h-32 rounded-full object-cover'
-            />
-            <div>
-              <div className='flex items-center gap-2'>
-                <h2 className='text-2xl font-bold'>{mentor.name}</h2>
-                <LinkedinIcon className='w-5 h-5 text-[#0077b5]' />
-              </div>
-              <p className='text-muted-foreground'>{mentor.title}</p>
-              <div className='flex items-center gap-2 mt-2'>
-                <Badge
-                  variant='secondary'
-                  className='gap-1'
-                >
-                  <Clock className='w-3 h-3' /> Active yesterday
-                </Badge>
-                {mentor.isQuickResponder && (
-                  <Badge
-                    variant='secondary'
-                    className='gap-1'
-                  >
-                    <Zap className='w-3 h-3' /> Quick Responder
-                  </Badge>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <Tabs defaultValue='plans'>
-            <TabsList>
-              <TabsTrigger value='plans'>Mentorship plans</TabsTrigger>
-              <TabsTrigger value='sessions'>Sessions</TabsTrigger>
-            </TabsList>
-            <TabsContent value='plans'>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Standard Plan</CardTitle>
-                </CardHeader>
-                <CardContent className='space-y-4'>
-                  <div className='text-3xl font-bold'>${mentor.price} / month</div>
-                  <p>
-                    For those who want coaching in how to achieve specific career goals or how to
-                    reach their potential
-                  </p>
-                  <div className='space-y-2'>
-                    <div className='flex items-center gap-2'>
-                      <Calendar className='w-4 h-4' />
-                      <span>2 calls per month (45min/call)</span>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                      <MessageSquare className='w-4 h-4' />
-                      <span>Unlimited Q&A via chat</span>
-                    </div>
-                  </div>
-                  <Button className='w-full'>Apply now</Button>
-                  <p className='text-sm text-center text-muted-foreground'>Only 2 spots left!</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 
   const navigate = useNavigate();
   return (
@@ -404,16 +211,6 @@ export default function MentorBrowse() {
             </div>
           </aside>
 
-          {/* <div className='flex-1 max-w-3xl'>
-            <div className='space-y-4'>
-              {mentors.map((mentor) => (
-                <MentorProfile
-                  key={mentor.id}
-                  mentor={mentor}
-                />
-              ))}
-            </div>
-          </div> */}
           <div className='flex-1 max-w-3xl'>
             <div className='space-y-4'>
               {mentors.map((mentor) => (

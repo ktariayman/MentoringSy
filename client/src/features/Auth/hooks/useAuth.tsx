@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/store/auth.store';
+import { useAuthStore } from '@/features/Auth/store/auth.store';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuthHandler = () => {

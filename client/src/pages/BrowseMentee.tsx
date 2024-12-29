@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useNavigate } from 'react-router-dom';
-import { mentees } from '@/constants/index.constants';
+import { mentees } from '@/constants';
 
 export default function MenteeBrowse() {
   const [searchQuery, setSearchQuery] = React.useState('');

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { useAuthStore } from '@/store/auth.store';
-import Auth from '@/pages/Auth';
+import { useAuthStore } from '@/features/Auth/store/auth.store';
+import Auth from '@/features/Auth';
 
 export default function LoggedInRoutes(): JSX.Element {
   const { isAuthenticated } = useAuthStore();

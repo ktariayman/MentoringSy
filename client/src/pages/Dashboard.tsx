@@ -15,7 +15,7 @@ import { Edit, Trash, ChevronUp, ChevronDown } from 'lucide-react';
 
 import { useNavigate } from 'react-router-dom';
 import { Header } from '@/components/Header';
-import { useAuthHandler } from '@/hooks/useAuth';
+import { useAuthHandler } from '@/features/Auth/hooks/useAuth';
 
 type OverviewCardProps = {
   title: string;

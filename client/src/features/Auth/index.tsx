@@ -8,8 +8,8 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LoginForm } from '@/forms/LoginForm';
-import RegisterForm from '@/forms/RegisterForm';
+import { LoginForm } from '@/features/Auth/forms/LoginForm';
+import RegisterForm from '@/features/Auth/forms/RegisterForm';
 
 export default function Auth() {
   return (

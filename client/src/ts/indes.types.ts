@@ -1,3 +1,5 @@
+type UserType = 'mentor' | 'mentee' | 'admin';
+
 type User = {
   id: number;
   name: string;
@@ -5,9 +7,8 @@ type User = {
   location: string;
   image: string;
   about: string;
-  type: 'mentor' | 'mentee';
+  type: UserType;
 };
-
 export type Mentor = User & {
   rating: number;
   reviews: number;

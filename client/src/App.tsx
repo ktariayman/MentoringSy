@@ -3,10 +3,10 @@ import { ThemeProvider } from '@/components/theme-provider';
 import LoggedInRoutes from './routes/LoggedInRoutes';
 import NotLoggedInRoutes from './routes/NotLoggedInRoutes';
 import Dashboard from './pages/Dashboard';
-import Auth from './pages/Auth';
+import Auth from './features/Auth';
+import BrowseMentor from './features/Mentors/BrowseMentor';
 import MenteeDashboard from './pages/Mentee';
 import MentorProfile from './pages/MentorProfile';
-import BrowseMentor from './pages/BrowseMentor';
 import BrowseMentee from './pages/BrowseMentee';
 
 function App() {
@@ -38,11 +38,11 @@ function App() {
           element: <MenteeDashboard />
         },
         {
-          path: '/mentors',
+          path: '/browse/mentors',
           element: <BrowseMentor />
         },
         {
-          path: '/mentees',
+          path: '/browse/mentees',
           element: <BrowseMentee />
         },
         {

@@ -5,7 +5,7 @@ import { Home, ChevronRight, Zap, Star, Clock, LinkedinIcon, MapPin } from 'luci
 import { Link } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { mentees, mentors } from '@/constants/index.constants';
+import { mentees, mentors } from '@/constants';
 import { Mentee, Mentor } from '@/ts/indes.types';
 
 export default function MentorProfile() {

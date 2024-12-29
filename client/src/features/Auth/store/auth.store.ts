@@ -1,4 +1,4 @@
-import { SECOND } from '@/constants/index.constants';
+import { SECOND } from '@/constants';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
