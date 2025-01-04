@@ -7,7 +7,7 @@ export const data: DashboardRow[] = [
   { id: 3, name: 'Alex Johnson', role: 'Mentee', progress: '45%' },
   { id: 4, name: 'Emma Watson', role: 'Mentor', progress: '95%' },
   { id: 5, name: 'Michael Brown', role: 'Mentee', progress: '30%' },
-  { id: 6, name: 'Sophia Davis', role: 'Mentor', progress: '70%' }
+  { id: 6, name: 'Sophia Davis', role: 'Mentor', progress: '70%' },
 ];
 
 export const RESPONSIVE_SIZE = 768;

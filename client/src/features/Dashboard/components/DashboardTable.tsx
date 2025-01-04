@@ -7,7 +7,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from '@/components/ui/table';
 import { Edit, Trash, ChevronUp, ChevronDown } from 'lucide-react';
 
@@ -34,12 +34,13 @@ const DashboardTable = <T extends Record<string, any>>({
   data,
   onDelete,
   className,
-  rowsPerPage = 5
+  rowsPerPage = 5,
 }: DashboardTableProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortConfig, setSortConfig] = useState<{ key: keyof T; direction: 'asc' | 'desc' } | null>(
-    null
-  );
+  const [sortConfig, setSortConfig] = useState<{
+    key: keyof T;
+    direction: 'asc' | 'desc';
+  } | null>(null);
   const [tableData, setTableData] = useState(data); // Maintain table data locally
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [rowToDelete, setRowToDelete] = useState<T | null>(null);
@@ -65,7 +66,10 @@ const DashboardTable = <T extends Record<string, any>>({
   const handleSort = (accessor: keyof T) => {
     setSortConfig((prev) =>
       prev?.key === accessor
-        ? { key: accessor, direction: prev.direction === 'asc' ? 'desc' : 'asc' }
+        ? {
+            key: accessor,
+            direction: prev.direction === 'asc' ? 'desc' : 'asc',
+          }
         : { key: accessor, direction: 'asc' }
     );
   };
@@ -115,27 +119,25 @@ const DashboardTable = <T extends Record<string, any>>({
     setSelectedRows(isSelected ? new Set(paginatedData) : new Set());
   };
 
-  const isAllSelected = selectedRows.size === paginatedData.length && paginatedData.length > 0;
+  const isAllSelected =
+    selectedRows.size === paginatedData.length && paginatedData.length > 0;
 
   return (
     <>
       {isModalOpen && editingRow && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <h3 className='text-lg font-bold'>Edit Row</h3>
-          <div className='mt-4'>
+          <h3 className="text-lg font-bold">Edit Row</h3>
+          <div className="mt-4">
             <p>ID: {editingRow.id}</p>
             <p>Name: {editingRow.name}</p>
             <p>Role: {editingRow.role}</p>
           </div>
-          <div className='mt-6 flex justify-end'>
-            <Button
-              variant='secondary'
-              onClick={closeModal}
-            >
+          <div className="mt-6 flex justify-end">
+            <Button variant="secondary" onClick={closeModal}>
               Cancel
             </Button>
             <Button
-              className='ml-4'
+              className="ml-4"
               onClick={() => {
                 closeModal();
               }}
@@ -147,21 +149,18 @@ const DashboardTable = <T extends Record<string, any>>({
       )}
       {isDeleteModalOpen && rowToDelete && (
         <Modal onClose={() => setIsDeleteModalOpen(false)}>
-          <h3 className='text-lg font-bold'>Confirm Deletion</h3>
-          <p className='mt-4'>
+          <h3 className="text-lg font-bold">Confirm Deletion</h3>
+          <p className="mt-4">
             Are you sure you want to delete <strong>{rowToDelete.name}</strong>?
           </p>
-          <div className='mt-6 flex justify-end'>
+          <div className="mt-6 flex justify-end">
             <Button
-              variant='secondary'
+              variant="secondary"
               onClick={() => setIsDeleteModalOpen(false)}
             >
               Cancel
             </Button>
-            <Button
-              className='ml-4 text-red-500'
-              onClick={handleDelete}
-            >
+            <Button className="ml-4 text-red-500" onClick={handleDelete}>
               Delete
             </Button>
           </div>
@@ -173,7 +172,7 @@ const DashboardTable = <T extends Record<string, any>>({
           <TableHeader>
             <TableHead>
               <input
-                type='checkbox'
+                type="checkbox"
                 checked={isAllSelected}
                 onChange={(e) => toggleSelectAll(e.target.checked)}
               />
@@ -182,17 +181,17 @@ const DashboardTable = <T extends Record<string, any>>({
               {columns.map((col, index) => (
                 <TableHead
                   key={index}
-                  className='cursor-pointer'
+                  className="cursor-pointer"
                   onClick={() => col.sortable && handleSort(col.accessor)}
                 >
-                  <div className='flex items-center'>
+                  <div className="flex items-center">
                     {col.header}
                     {col.sortable && sortConfig?.key === col.accessor && (
-                      <span className='ml-2'>
+                      <span className="ml-2">
                         {sortConfig.direction === 'asc' ? (
-                          <ChevronUp className='h-4 w-4' />
+                          <ChevronUp className="h-4 w-4" />
                         ) : (
-                          <ChevronDown className='h-4 w-4' />
+                          <ChevronDown className="h-4 w-4" />
                         )}
                       </span>
                     )}
@@ -207,31 +206,33 @@ const DashboardTable = <T extends Record<string, any>>({
               <TableRow key={rowIndex}>
                 <TableCell>
                   <input
-                    type='checkbox'
+                    type="checkbox"
                     checked={selectedRows.has(row)}
                     onChange={() => toggleRowSelection(row)}
                   />
                 </TableCell>
                 {columns.map((col, colIndex) => (
                   <TableCell key={colIndex}>
-                    {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
+                    {col.render
+                      ? col.render(row[col.accessor], row)
+                      : row[col.accessor]}
                   </TableCell>
                 ))}
                 <TableCell>
-                  <div className='flex space-x-2'>
+                  <div className="flex space-x-2">
                     <Button
-                      variant='ghost'
-                      size='icon'
+                      variant="ghost"
+                      size="icon"
                       onClick={() => handleEdit(row)}
                     >
-                      <Edit className='h-4 w-4 text-blue-500' />
+                      <Edit className="h-4 w-4 text-blue-500" />
                     </Button>
                     <Button
-                      variant='ghost'
-                      size='icon'
+                      variant="ghost"
+                      size="icon"
                       onClick={() => openDeleteModal(row)}
                     >
-                      <Trash className='h-4 w-4 text-red-500' />
+                      <Trash className="h-4 w-4 text-red-500" />
                     </Button>
                   </div>
                 </TableCell>
@@ -239,22 +240,24 @@ const DashboardTable = <T extends Record<string, any>>({
             ))}
           </TableBody>
         </ShadTable>
-        <div className='flex justify-between items-center mt-4'>
-          <span className='text-sm text-gray-600'>
+        <div className="flex justify-between items-center mt-4">
+          <span className="text-sm text-gray-600">
             Page {currentPage} of {totalPages}
           </span>
-          <div className='flex space-x-2'>
+          <div className="flex space-x-2">
             <Button
-              variant='ghost'
+              variant="ghost"
               disabled={currentPage === 1}
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             >
               Previous
             </Button>
             <Button
-              variant='ghost'
+              variant="ghost"
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
             >
               Next
             </Button>

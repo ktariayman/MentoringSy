@@ -2,9 +2,12 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import MentorProfile from './pages/MentorProfile';
 
-const profileComponentMap: Record<string, React.ComponentType<{ id: string }>> = {
+const profileComponentMap: Record<
+  string,
+  React.ComponentType<{ id: string }>
+> = {
   mentor: MentorProfile,
-  mentee: MentorProfile
+  mentee: MentorProfile,
 };
 
 const ProfileWrapper = () => {
@@ -12,8 +15,10 @@ const ProfileWrapper = () => {
 
   if (!type || !id) {
     return (
-      <div className='min-h-screen flex items-center justify-center'>
-        <p className='text-lg text-muted-foreground'>Invalid profile type or ID.</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-muted-foreground">
+          Invalid profile type or ID.
+        </p>
       </div>
     );
   }
@@ -22,8 +27,10 @@ const ProfileWrapper = () => {
 
   if (!ProfileComponent) {
     return (
-      <div className='min-h-screen flex items-center justify-center'>
-        <p className='text-lg text-muted-foreground'>Profile type not recognized.</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg text-muted-foreground">
+          Profile type not recognized.
+        </p>
       </div>
     );
   }

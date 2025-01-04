@@ -11,35 +11,31 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin}>
-      <div className='grid w-full items-center gap-4'>
-        <div className='flex flex-col space-y-1.5'>
-          <Label htmlFor='login-email'>Email</Label>
+      <div className="grid w-full items-center gap-4">
+        <div className="flex flex-col space-y-1.5">
+          <Label htmlFor="login-email">Email</Label>
           <Input
-            id='login-email'
-            type='email'
-            placeholder='Enter your email'
+            id="login-email"
+            type="email"
+            placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div className='flex flex-col space-y-1.5'>
-          <Label htmlFor='login-password'>Password</Label>
+        <div className="flex flex-col space-y-1.5">
+          <Label htmlFor="login-password">Password</Label>
           <Input
-            id='login-password'
-            type='password'
-            placeholder='Enter your password'
+            id="login-password"
+            type="password"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
       </div>
-      <Button
-        className='w-full mt-6'
-        type='submit'
-        disabled={isLoading}
-      >
+      <Button className="w-full mt-6" type="submit" disabled={isLoading}>
         {isLoading ? 'Logging in...' : 'Login'}
       </Button>
     </form>

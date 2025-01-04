@@ -16,9 +16,9 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Auth />
-        }
-      ]
+          element: <Auth />,
+        },
+      ],
     },
     {
       path: '/',
@@ -26,39 +26,36 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Dashboard />
+          element: <Dashboard />,
         },
         {
           path: '/dashboard',
-          element: <Dashboard />
+          element: <Dashboard />,
         },
         {
           path: '/mentees',
-          element: <MenteeDashboard />
+          element: <MenteeDashboard />,
         },
         {
           path: '/browse/mentors',
-          element: <BrowseMentor />
+          element: <BrowseMentor />,
         },
         {
           path: '/mentors/:id',
-          element: <MentorProfile />
+          element: <MentorProfile />,
         },
         {
           path: '/mentees/:id',
-          element: <MentorProfile />
-        }
-      ]
-    }
+          element: <MentorProfile />,
+        },
+      ],
+    },
   ]);
 
   return (
-    <ThemeProvider
-      defaultTheme='dark'
-      storageKey='vite-ui-theme'
-    >
-      <div className='flex flex-col min-h-screen bg-background text-foreground'>
-        <main className='flex-1'>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className="flex flex-col min-h-screen bg-background text-foreground">
+        <main className="flex-1">
           <RouterProvider router={router} />
         </main>
       </div>

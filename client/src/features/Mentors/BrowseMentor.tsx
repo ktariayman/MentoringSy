@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
 import { mentors } from '@/constants';
@@ -24,7 +24,7 @@ export default function MentorBrowse() {
     { name: 'Microsoft', count: 44 },
     { name: 'Google', count: 35 },
     { name: 'Meta', count: 17 },
-    { name: 'Freelance', count: 9 }
+    { name: 'Freelance', count: 9 },
   ];
 
   const skills = [
@@ -32,7 +32,7 @@ export default function MentorBrowse() {
     { name: 'Product Management', count: 448 },
     { name: 'Design Strategy', count: 376 },
     { name: 'UX/UI Design', count: 362 },
-    { name: 'Data Engineering', count: 361 }
+    { name: 'Data Engineering', count: 361 },
   ];
 
   // const mentors = [
@@ -72,41 +72,38 @@ export default function MentorBrowse() {
     'Product Managers',
     'Leadership Mentors',
     'Career Coaches',
-    'Top Mentors'
+    'Top Mentors',
   ];
 
   const navigate = useNavigate();
   return (
-    <div className='min-h-screen bg-background'>
-      <header className='border-b'>
-        <div className='container mx-auto px-4'>
-          <div className='flex items-center justify-between h-16'>
-            <div className='flex items-center gap-2'>
-              <Ship className='h-8 w-8 text-primary' />
-              <span className='text-xl font-bold'>MentoringSy</span>
+    <div className="min-h-screen bg-background">
+      <header className="border-b">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-2">
+              <Ship className="h-8 w-8 text-primary" />
+              <span className="text-xl font-bold">MentoringSy</span>
             </div>
 
-            <div className='flex-1 max-w-xl mx-4'>
-              <div className='relative'>
-                <Search className='absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground' />
+            <div className="flex-1 max-w-xl mx-4">
+              <div className="relative">
+                <Search className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                 <Input
-                  type='search'
-                  placeholder='Search...'
-                  className='pl-8'
+                  type="search"
+                  placeholder="Search..."
+                  className="pl-8"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
             </div>
 
-            <div className='flex items-center gap-4'>
+            <div className="flex items-center gap-4">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant='ghost'
-                    className='gap-1'
-                  >
-                    For Businesses <ChevronDown className='h-4 w-4' />
+                  <Button variant="ghost" className="gap-1">
+                    For Businesses <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -117,7 +114,7 @@ export default function MentorBrowse() {
               </DropdownMenu>
               <Button>Browse all mentors</Button>
               <Button
-                variant='ghost'
+                variant="ghost"
                 onClick={() => {
                   navigate('/dashboard');
                 }}
@@ -127,12 +124,12 @@ export default function MentorBrowse() {
             </div>
           </div>
 
-          <nav className='flex items-center gap-6 h-12 overflow-x-auto no-scrollbar'>
+          <nav className="flex items-center gap-6 h-12 overflow-x-auto no-scrollbar">
             {mentorCategories.map((category) => (
               <Button
                 key={category}
-                variant='ghost'
-                className='text-sm font-medium hover:text-primary'
+                variant="ghost"
+                className="text-sm font-medium hover:text-primary"
               >
                 {category}
               </Button>
@@ -141,35 +138,42 @@ export default function MentorBrowse() {
         </div>
       </header>
 
-      <main className='container mx-auto px-4 py-6'>
-        <div className='flex gap-6'>
-          <aside className='w-64 shrink-0'>
-            <div className='sticky top-6 space-y-6'>
+      <main className="container mx-auto px-4 py-6">
+        <div className="flex gap-6">
+          <aside className="w-64 shrink-0">
+            <div className="sticky top-6 space-y-6">
               <div>
-                <h2 className='font-semibold mb-4'>Companies</h2>
-                <div className='space-y-2'>
+                <h2 className="font-semibold mb-4">Companies</h2>
+                <div className="space-y-2">
                   {companies.map((company) => (
                     <div
                       key={company.name}
-                      className='flex items-center space-x-2'
+                      className="flex items-center space-x-2"
                     >
                       <Checkbox
                         id={company.name}
                         checked={selectedCompany.includes(company.name)}
                         onCheckedChange={(checked) => {
                           if (checked) {
-                            setSelectedCompany([...selectedCompany, company.name]);
+                            setSelectedCompany([
+                              ...selectedCompany,
+                              company.name,
+                            ]);
                           } else {
-                            setSelectedCompany(selectedCompany.filter((c) => c !== company.name));
+                            setSelectedCompany(
+                              selectedCompany.filter((c) => c !== company.name)
+                            );
                           }
                         }}
                       />
                       <label
                         htmlFor={company.name}
-                        className='flex flex-1 items-center justify-between text-sm'
+                        className="flex flex-1 items-center justify-between text-sm"
                       >
                         {company.name}
-                        <span className='text-muted-foreground'>{company.count}</span>
+                        <span className="text-muted-foreground">
+                          {company.count}
+                        </span>
                       </label>
                     </div>
                   ))}
@@ -177,12 +181,12 @@ export default function MentorBrowse() {
               </div>
 
               <div>
-                <h2 className='font-semibold mb-4'>Skills</h2>
-                <div className='space-y-2'>
+                <h2 className="font-semibold mb-4">Skills</h2>
+                <div className="space-y-2">
                   {skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className='flex items-center space-x-2'
+                      className="flex items-center space-x-2"
                     >
                       <Checkbox
                         id={skill.name}
@@ -191,16 +195,20 @@ export default function MentorBrowse() {
                           if (checked) {
                             setSelectedSkills([...selectedSkills, skill.name]);
                           } else {
-                            setSelectedSkills(selectedSkills.filter((s) => s !== skill.name));
+                            setSelectedSkills(
+                              selectedSkills.filter((s) => s !== skill.name)
+                            );
                           }
                         }}
                       />
                       <label
                         htmlFor={skill.name}
-                        className='flex flex-1 items-center justify-between text-sm'
+                        className="flex flex-1 items-center justify-between text-sm"
                       >
                         {skill.name}
-                        <span className='text-muted-foreground'>{skill.count}</span>
+                        <span className="text-muted-foreground">
+                          {skill.count}
+                        </span>
                       </label>
                     </div>
                   ))}
@@ -209,13 +217,10 @@ export default function MentorBrowse() {
             </div>
           </aside>
 
-          <div className='flex-1 max-w-3xl'>
-            <div className='space-y-4'>
+          <div className="flex-1 max-w-3xl">
+            <div className="space-y-4">
               {mentors.map((mentor) => (
-                <MentorCard
-                  key={mentor.id}
-                  mentor={mentor}
-                />
+                <MentorCard key={mentor.id} mentor={mentor} />
               ))}
             </div>
           </div>

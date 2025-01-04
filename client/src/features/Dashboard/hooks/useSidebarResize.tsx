@@ -36,6 +36,6 @@ export function useSidebarResize() {
     handleMouseDown,
     sidebarWidth,
     isSidebarCollapsed,
-    setIsSidebarCollapsed
+    setIsSidebarCollapsed,
   };
 }

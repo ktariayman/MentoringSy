@@ -11,6 +11,7 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
     "format:check-project": "prettier --check .",
     "format:fix": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:fix-project": "prettier --write .",
     "format:project": "npm exec prettier . --write"
   },
   "dependencies": {

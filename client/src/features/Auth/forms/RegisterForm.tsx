@@ -7,39 +7,31 @@ const RegisterForm = () => {
   const { isLoading, onRegister } = useAuthHandler();
   return (
     <form onSubmit={onRegister}>
-      <div className='grid w-full items-center gap-4'>
-        <div className='flex flex-col space-y-1.5'>
-          <Label htmlFor='register-name'>Name</Label>
+      <div className="grid w-full items-center gap-4">
+        <div className="flex flex-col space-y-1.5">
+          <Label htmlFor="register-name">Name</Label>
+          <Input id="register-name" placeholder="Enter your name" required />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <Label htmlFor="register-email">Email</Label>
           <Input
-            id='register-name'
-            placeholder='Enter your name'
+            id="register-email"
+            type="email"
+            placeholder="Enter your email"
             required
           />
         </div>
-        <div className='flex flex-col space-y-1.5'>
-          <Label htmlFor='register-email'>Email</Label>
+        <div className="flex flex-col space-y-1.5">
+          <Label htmlFor="register-password">Password</Label>
           <Input
-            id='register-email'
-            type='email'
-            placeholder='Enter your email'
-            required
-          />
-        </div>
-        <div className='flex flex-col space-y-1.5'>
-          <Label htmlFor='register-password'>Password</Label>
-          <Input
-            id='register-password'
-            type='password'
-            placeholder='Choose a password'
+            id="register-password"
+            type="password"
+            placeholder="Choose a password"
             required
           />
         </div>
       </div>
-      <Button
-        className='w-full mt-6'
-        type='submit'
-        disabled={isLoading}
-      >
+      <Button className="w-full mt-6" type="submit" disabled={isLoading}>
         {isLoading ? 'Creating account...' : 'Create account'}
       </Button>
     </form>

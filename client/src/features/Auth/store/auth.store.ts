@@ -34,10 +34,10 @@ export const useAuthStore = create(
         await new Promise((resolve) => setTimeout(resolve, SECOND));
         set({ isAuthenticated: false });
         if (callback) callback();
-      }
+      },
     }),
     {
-      name: 'auth-store'
+      name: 'auth-store',
     }
   )
 );

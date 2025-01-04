@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 
 type HeaderProps = {
@@ -23,14 +23,11 @@ export const Header = ({ isLoggedIn, onLogout, children }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
-    <header className='border-b sticky top-0 bg-background z-10'>
-      <div className='container mx-auto px-4 py-3 flex items-center justify-between'>
+    <header className="border-b sticky top-0 bg-background z-10">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div>{children}</div>
-        <div className='flex items-center space-x-4'>
-          <Button
-            variant='ghost'
-            onClick={() => navigate('/browse/mentors')}
-          >
+        <div className="flex items-center space-x-4">
+          <Button variant="ghost" onClick={() => navigate('/browse/mentors')}>
             Browse Mentors
           </Button>
           <ModeToggle />
@@ -38,25 +35,19 @@ export const Header = ({ isLoggedIn, onLogout, children }: HeaderProps) => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
-                  variant='ghost'
-                  className='relative h-8 w-8 rounded-full'
+                  variant="ghost"
+                  className="relative h-8 w-8 rounded-full"
                 >
-                  <Avatar className='h-8 w-8'>
-                    <AvatarImage
-                      src='/placeholder.jpg'
-                      alt='User'
-                    />
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="/placeholder.jpg" alt="User" />
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className='w-56'
-                align='end'
-              >
+              <DropdownMenuContent className="w-56" align="end">
                 <DropdownMenuLabel>
-                  <p className='font-medium'>Dr. Jane Doe</p>
-                  <p className='text-xs'>jane.doe@example.com</p>
+                  <p className="font-medium">Dr. Jane Doe</p>
+                  <p className="text-xs">jane.doe@example.com</p>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
