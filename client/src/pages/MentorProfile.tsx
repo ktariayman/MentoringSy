@@ -159,6 +159,7 @@ export default function MentorProfile() {
             )}
           </div>
 
+          {/* {type === 'mentor' && ( */}
           {type === 'mentor' && (
             <div className="lg:col-span-1">
               <Card>
