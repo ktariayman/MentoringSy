@@ -159,7 +159,6 @@ export default function MentorProfile() {
             )}
           </div>
 
-          {/* Sidebar */}
           {type === 'mentor' && (
             <div className="lg:col-span-1">
               <Card>

@@ -1,5 +1,4 @@
-import { Calendar, Users, BookOpen, Menu } from 'lucide-react';
-import { DashboardRow, TabItem } from '../ts/type';
+import { DashboardRow } from '../ts/type';
 
 export const data: DashboardRow[] = [
   { id: 1, name: 'John Doe', role: 'Mentee', progress: '60%' },

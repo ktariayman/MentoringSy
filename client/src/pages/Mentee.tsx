@@ -157,7 +157,6 @@ export default function MenteeDashboard() {
 
   return (
     <div className="flex h-screen bg-background text-foreground">
-      {/* Sidebar */}
       <aside className="w-64 border-r">
         <div className="p-4">
           <h1 className="text-2xl font-bold">MentoringSy</h1>
